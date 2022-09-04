@@ -14,6 +14,8 @@ export default extendTheme({
     c4: "#2C3333",
     btn_success: "#438f54",
     btn_success_hover: "#64b375",
+    btn_black_hover: "#838383",
+    btn_black: "#505050",
     btn_danger: "#dc3545",
     btn_warning: "#ffc107",
     btn_info: "#17a2b8"

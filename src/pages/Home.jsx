@@ -1,14 +1,18 @@
-import React, { Fragment, useEffect } from 'react'
-import { useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Box, Grid } from '@chakra-ui/react';
 import Panel from '../containers/Panel';
 import Header from '../components/Header';
 import HomeContentContainer from '../containers/HomeContentContainer';
 
 function Home() {
-    const location = useLocation()
+    const navigate = useNavigate();
+    const location = useLocation();
     useEffect(() => {
-        const state = location.state;
+        const sessionToken = location.state?.sessionToken;
+        if (!sessionToken) {
+          navigate("/");
+        }
     })
   return (
     <Grid width="100vw" height="100vh" gridTemplateColumns="10% 90%" gridTemplateRows="5% 95%">

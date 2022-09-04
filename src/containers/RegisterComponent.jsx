@@ -2,43 +2,44 @@ import {
   Button, useColorMode, useColorModeValue, Box, Container, FormControl, FormLabel, Input, Stack, Text,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const RegisterComponent = props => {
+  const navigate = useNavigate();
   const [name, setName] = useState();
   const [lastname, setLastname] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [confirmpassword, setConfirmpassword] = useState();
-  const baseUrl = "http://localhost:8000/api/v1/"
-  const { toggleColorMode } = useColorMode();
-  const text = useColorModeValue('dark', 'light');
-  const submitRegisterPage = async (e) => {
-    const data = {
-      name: name,
-      lastname: lastname,
-      email: email,
-      password: password,
-      role: 1
-    };
-    const response = await fetch(baseUrl + "users", {
+  const [confirmPassword, setConfirmpassword] = useState();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const url = process.env.REACT_APP_BE_URL;
+    if(password != confirmPassword) {
+      alert("Password not match");
+      return;
+    }
+    const response = await fetch(url + "/api/v1/users", {
       method: 'POST',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
+      body: JSON.stringify({
+        name: name,
+        lastname: lastname,
+        email: email,
+        password: password,
+      }),
       headers: {
         'Content-Type': 'application/json'
-      },
-      redirect: 'follow',
-      referrerPolicy: 'no-referrer',
-
-      body: JSON.stringify(data)
+      }
     });
-    debugger
+    const body = await response.json();
+    if (body.statusCode == 200) {
+      navigate("/");
+    }
   }
   return (
     <Stack h="100vh" w="100wh" justifyContent="center" alignItems="center">
       <Container bg="c4" shadow="base" w="400px" borderRadius="sm" padding="15px">
-        <form onSubmit={submitRegisterPage}>
+        <form onSubmit={handleSubmit}>
           { /** Image */}
           <Box h="150px" w="100%" bg="c4" shadow="base" borderRadius="sm"></Box>
           {/** Form */}

@@ -36,6 +36,10 @@ function LoginContainer() {
     navigate("/home", { state: data });
   }
 
+  const handleRegister = () => {
+    navigate("/register");
+  }
+
   return (
     <Container bg="c4" shadow="base" h="450px" w="400px" borderRadius="sm">
       <form onSubmit={handleSubmit} style={{ height: '100%' }}>
@@ -66,16 +70,31 @@ function LoginContainer() {
                 type="password"
               />
             </FormControl>
-            <Input
-              type="submit"
-              width="100%"
-              cursor={'pointer'}
-              _hover={{ background: 'btn_success_hover' }}
-              bg="btn_success"
-              border="none"
-              color="white"
-              value="Sign in"
-            />
+            <Stack flexDirection={'row'} justifyContent={'space-between'}>
+              <Input
+                type="submit"
+                width="40%"
+                marginTop={0}
+                cursor={'pointer'}
+                _hover={{ background: 'btn_success_hover' }}
+                bg="btn_success"
+                border="none"
+                color="white"
+                value="Sign in"
+              />
+              <Input
+                type="button"
+                width="40%"
+                marginTop="0px !important"
+                cursor={'pointer'}
+                _hover={{ background: 'btn_black_hover' }}
+                bg="btn_black"
+                border="none"
+                color="white"
+                value="Register"
+                onClick={handleRegister}
+              />
+            </Stack>
           </Stack>
         </Stack>
       </form>
