@@ -11,11 +11,10 @@ function Panel() {
         const search = location.search;
         const params = new URLSearchParams(search);
         const page = params.get("page");
-        if (page != target) {
+        if (page !== target) {
             params.set("page", target);
         }
         let parameters = params.toString();
-        debugger;
         navigate(`${pathname}?${parameters}`);
     }
 
