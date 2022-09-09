@@ -23,7 +23,7 @@ function Home() {
     })
   return (
     <AppContext.Provider value={ { sessionToken: token } }>
-        <Grid width="100vw" height="100vh" gridTemplateColumns="10% 90%" gridTemplateRows="5% 95%">
+        <Grid width="100vw" height="100vh" gridTemplateColumns="15% 85%" gridTemplateRows="5% 95%">
             {/** PANEL */}
             <Box gridRow="span 2" h="100%" shadow="base" w="100%" bg="c4">
                 <Panel />
