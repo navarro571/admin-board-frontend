@@ -4,25 +4,22 @@ import { Box, Grid } from '@chakra-ui/react';
 import Panel from '../containers/Panel';
 import Header from '../components/Header';
 import HomeContentContainer from '../containers/HomeContentContainer';
-import AppContext from "../contexts/AppContext";
 
 function Home() {
     const navigate = useNavigate();
     const location = useLocation();
-    let [token, setToken] = useState();
 
     useEffect(() => {
         const sessionToken = location.state?.sessionToken;
         const sessionStorageToken = sessionStorage.getItem("token");
         if (sessionToken) {
             sessionStorage.setItem("token", sessionToken);
-            setToken(sessionToken);
-        } else if (!sessionToken && !sessionStorageToken) {
+        } else if (!sessionStorageToken) {
             navigate("/")
         }
     })
   return (
-    <AppContext.Provider value={ { sessionToken: token } }>
+    <>
         <Grid width="100vw" height="100vh" gridTemplateColumns="15% 85%" gridTemplateRows="5% 95%">
             {/** PANEL */}
             <Box gridRow="span 2" h="100%" shadow="base" w="100%" bg="c4">
@@ -37,7 +34,7 @@ function Home() {
                 <HomeContentContainer />
             </Box>
         </Grid>
-    </AppContext.Provider>
+    </>
   )
 }
 

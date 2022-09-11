@@ -1,12 +1,10 @@
 import { Stack, Text } from '@chakra-ui/react'
 import React, {useContext, useEffect} from 'react'
-import AppContext from "../contexts/AppContext";
 import {useLocation} from "react-router-dom";
 import HomeOverviewPage from "../subpages/HomeOverviewPage";
 import HomeUsersPage from "../subpages/HomeUsersPage";
 
 function HomeContentContainer() {
-    const appContext = useContext(AppContext);
     const location = useLocation();
     const CurrentPage = () => {
         const search = location.search;
